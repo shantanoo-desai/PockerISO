@@ -1,0 +1,8 @@
+# All Generate Tarballs of Container Filesystems
+*.tar
+*.img
+*.qcow2
+
+# mount directory created within the container that
+# gets volume mapped to the host
+mnt
