@@ -2,8 +2,15 @@
 
 Use Hashicorp Packer with Docker to build Bootable Image using Containers.
 
-This repository tries its best to replicate and [Ivan Velichko's @iximiuz docker-to-linux][1] repo
+This repository tries its best to replicate [Ivan Velichko's @iximiuz docker-to-linux][1] repo
 but using a single Packer Template which can be configured for different Distribution flavors.
+
+ Result
+
+| Distribution Name | Platform | Working | 
+|:-----------------:|:--------:|:-------:|
+| __Debian Bullseye__ |`linux/amd64` | :heavy_check_mark: |
+
 
 ## Usage
 
@@ -58,7 +65,7 @@ removes all generated artifacts
 
 | Distribution Name | Distribution Version |
 |:------------------|:---------------------|
-| __Debian__        | `bullseye`<br/> `bookworm`|
+| __Debian__        | ~~`bullseye`~~<br/> `bookworm`|
 | __Ubuntu__        | `focal`<br/>`jammy`  |
 
 ## Credits / Resources
