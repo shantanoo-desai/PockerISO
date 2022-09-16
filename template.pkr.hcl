@@ -73,7 +73,7 @@ build {
     provisioner "shell" {
         inline = [
             "apt-get update",
-            "apt-get install -y --no-install-recommends ${var.distro_kernel}",
+            "apt-get install -y ${var.distro_kernel}",
             "apt-get install -y --no-install-recommends systemd-sysv",
             "echo \"root:root\" | chpasswd"
         ]
