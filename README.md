@@ -10,6 +10,7 @@ but using a single Packer Template which can be configured for different Distrib
 | Distribution Name | Platform | Working | 
 |:-----------------:|:--------:|:-------:|
 | __Debian Bullseye__ <br> __Debian Bookworm__ |`linux/amd64` | :heavy_check_mark: |
+| __Ubuntu 20.04 (Focal Fossa)__ <br> __Ubuntu 22.04 (Jammy Jellyfish)__ |`linux/amd64` | :heavy_check_mark: |
 
 
 ## Usage
@@ -60,13 +61,6 @@ removes all generated artifacts
   content to the respective mount point in the container
 4. the bash script in `scripts` directory takes the responsibility for creating a bootable image which will be available
   in the root directory of the repo as `{distribution}.img` and `{distribution}.qcow2`
-
-## On-Going Trials for Image Creation
-
-| Distribution Name | Distribution Version |
-|:------------------|:---------------------|
-| __Debian__        | ~~`bullseye`~~<br/> ~~`bookworm`~~ |
-| __Ubuntu__        | `focal`<br/>`jammy`  |
 
 ## Emulating Results with QEMU
 
