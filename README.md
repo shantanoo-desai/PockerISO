@@ -9,7 +9,7 @@ but using a single Packer Template which can be configured for different Distrib
 
 | Distribution Name | Platform | Working | 
 |:-----------------:|:--------:|:-------:|
-| __Debian Bullseye__ |`linux/amd64` | :heavy_check_mark: |
+| __Debian Bullseye__ <br> __Debian Bookworm__ |`linux/amd64` | :heavy_check_mark: |
 
 
 ## Usage
@@ -65,8 +65,18 @@ removes all generated artifacts
 
 | Distribution Name | Distribution Version |
 |:------------------|:---------------------|
-| __Debian__        | ~~`bullseye`~~<br/> `bookworm`|
+| __Debian__        | ~~`bullseye`~~<br/> ~~`bookworm`~~ |
 | __Ubuntu__        | `focal`<br/>`jammy`  |
+
+## Emulating Results with QEMU
+
+For `amd64` images, the final `.img` file will be created with `root` ownership, which will require `sudo` privileges
+
+```
+sudo qemu-system-x86_64 -m 4096 -smp 4 -drive file={distribution}.img,index=0,media=disk,format=raw 
+```
+
+here `{distribution}` will be either `ubuntu`, `debian`.
 
 ## Credits / Resources
 
