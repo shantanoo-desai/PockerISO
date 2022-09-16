@@ -2,6 +2,7 @@
 *.tar
 *.img
 *.qcow2
+*.dir
 
 # mount directory created within the container that
 # gets volume mapped to the host
