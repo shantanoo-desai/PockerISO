@@ -32,12 +32,12 @@ mkfs.ext4 ${LOOPDEVICE}
 echo_blue "[Copy ${DISTR} directory structure to partition]"
 mkdir -p /os/mnt
 mount -t auto ${LOOPDEVICE} /os/mnt/
-cp -R /os/${DISTR}.dir/. /os/mnt/
+cp -dR /os/${DISTR}.dir/. /os/mnt/
 
 
 echo_blue "[Setup extlinux]"
 extlinux --install /os/mnt/boot/
-cp /os/config/syslinux.cfg /os/mnt/boot/syslinux.cfg
+cp /os/config/${DISTR}/syslinux.cfg /os/mnt/boot/syslinux.cfg
 
 echo_blue "[Unmount]"
 umount /os/mnt
