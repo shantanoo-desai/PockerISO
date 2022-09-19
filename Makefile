@@ -15,7 +15,8 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-TEMPLATE_FILE=template.pkr.hcl
+DEBIAN_TEMPLATE_FILE=templates/debian-template.pkr.hcl
+ALPINE_TEMPLATE_FILE=templates/alpine-template.pkr.hcl
 
 .PHONY:
 debian: debian.img
@@ -24,12 +25,19 @@ debian: debian.img
 ubuntu: ubuntu.img
 
 .PHONY:
+alpine: alpine.img
+
+.PHONY:
 init:
 	packer init -upgrade ${TEMPLATE_FILE}
 
 %.tar:
 	@echo "Packer Build: Generate the Container Filesystem Tarball"
-	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-fs-tarball.*" ${TEMPLATE_FILE}
+ifneq ($(filter $(MAKECMDGOALS),ubuntu debian),)
+	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-fs-tarball.*" ${DEBIAN_TEMPLATE_FILE}
+else
+	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-fs-tarball.*" ${ALPINE_TEMPLATE_FILE}
+endif
 
 %.dir: %.tar
 	@echo "Extracting tarball to a directory.."
@@ -37,8 +45,12 @@ init:
 	tar -vxf $*.tar -C $*.dir
 
 %.img: %.dir
-	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-boot-img.*" ${TEMPLATE_FILE}
+ifneq ($(filter $(MAKECMDGOALS),ubuntu debian),)
+	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-boot-img.*" ${DEBIAN_TEMPLATE_FILE}
+else
+	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-boot-img.*" ${ALPINE_TEMPLATE_FILE}
+endif
 
 .PHONY:
 clean:
-	rm -rf mnt ubuntu.* debian.*
+	rm -rf mnt ubuntu.* debian.* alpine.*
