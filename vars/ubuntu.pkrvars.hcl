@@ -15,6 +15,6 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 distro = "ubuntu"
-distro_version = "focal"
+distro_version = "noble"
 distro_platform = "linux/amd64" # linux/armv64/v8 for ARM64 Docker Images
 distro_kernel = "linux-image-virtual"

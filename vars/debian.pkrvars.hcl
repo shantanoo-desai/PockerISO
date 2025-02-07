@@ -15,6 +15,6 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 distro = "debian"
-distro_version = "bullseye"
+distro_version = "bookworm"
 distro_platform = "linux/amd64" # linux/armv64/v8 for ARM64 Docker Images
 distro_kernel = "linux-image-amd64"
