@@ -1,5 +1,5 @@
 #     PockerISO: Use Packer + Docker to make bootable images
-#     Copyright (C) 2022  Shantanoo 'Shan' Desai <sdes.softdev@gmail.com>
+#     Copyright (C) 2025  Shantanoo 'Shan' Desai <sdes.softdev@gmail.com>
 
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
@@ -27,15 +27,13 @@ ubuntu: ubuntu.img
 .PHONY:
 alpine: alpine.img
 
-.PHONY:
-init:
-	packer init -upgrade ${TEMPLATE_FILE}
-
 %.tar:
 	@echo "Packer Build: Generate the Container Filesystem Tarball"
 ifneq ($(filter $(MAKECMDGOALS),ubuntu debian),)
+	packer init -var-file=./vars/$*.pkrvars.hcl -upgrade ${DEBIAN_TEMPLATE_FILE}
 	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-fs-tarball.*" ${DEBIAN_TEMPLATE_FILE}
 else
+	packer init -var-file=./vars/$*.pkrvars.hcl -upgrade ${ALPINE_TEMPLATE_FILE}
 	packer build -var-file=./vars/$*.pkrvars.hcl -only="gen-fs-tarball.*" ${ALPINE_TEMPLATE_FILE}
 endif
 

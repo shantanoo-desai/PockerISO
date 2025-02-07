@@ -22,14 +22,6 @@ Requirements:
 - Docker (>=20.10.17)
 - Hashicorp Packer (>=1.8.3)
 
-### Initialize Packer
-
-Initially download the Docker plugin for Hashicorp Packer using:
-
-```
-make init
-```
-
 ### Ubuntu / Debian Images
 
 ```
